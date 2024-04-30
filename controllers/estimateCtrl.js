@@ -11,6 +11,12 @@ const addEstimateController = async (req, res) => {
         .status(201)
         .send({ success: false, message: "Estimate Id Already Found" });
     }
+
+    if (req.body.status === "paid") {
+      req.body.advancePayment = req.body.grandTotal;
+      req.body.balancePayment = 0;
+    }
+
     const qLength = await estimateModel.countDocuments({});
     const newInvoice = new estimateModel({
       ...req.body,
