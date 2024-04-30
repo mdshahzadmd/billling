@@ -1,4 +1,5 @@
 const userModel = require("../models/userModel");
+const sendMail = require("./sendMail");
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -320,6 +321,7 @@ const sendMailController = async (req, res) => {
     return res.status(203).send({
       success: true,
       message: "Otp Send Successfully",
+      data: savedOtpUser,
     });
   } catch (error) {
     res.status(500).send({
