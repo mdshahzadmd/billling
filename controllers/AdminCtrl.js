@@ -7,7 +7,7 @@ const quotationModel = require("../models/quotationModel");
 const getAllClientsController = async (req, res) => {
   try {
     const allUser = await userModel.find({
-      email: { $ne: "aashirdigital@gmail.com" },
+      email: { $ne: "01.mdshahzad@gmail.com" },
     });
     if (!allUser) {
       return res.status(200).send({ success: false, message: "No User Found" });

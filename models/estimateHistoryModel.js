@@ -22,6 +22,9 @@ const estimateHistorySchema = new mongoose.Schema({
   paymentGiven: {
     type: String,
   },
+  discount: {
+    type: String,
+  },
   balancePayment: {
     type: String,
   },

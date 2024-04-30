@@ -13,7 +13,7 @@ const addEstimateController = async (req, res) => {
     }
 
     if (req.body.status === "paid") {
-      req.body.advancePayment = req.body.grandTotal;
+      req.body.advancePayment = req.body.grandTotal - req.body.discount;
       req.body.balancePayment = 0;
     }
 
@@ -25,6 +25,7 @@ const addEstimateController = async (req, res) => {
     await newInvoice.save();
     const newEstimateHistory = new estimateHistoryModel({
       ...req.body,
+      discount: req.body.discount,
       paymentGiven: req.body.advancePayment,
       estimateId: `ES${qLength + 1}`,
     });
@@ -52,7 +53,7 @@ const updateEsimateController = async (req, res) => {
     }
 
     if (req.body.status === "paid") {
-      req.body.advancePayment = invoice.totalValue;
+      req.body.advancePayment = invoice.totalValue - req.body.discount;
       req.body.balancePayment = 0;
     }
     const updateInvoice = await estimateModel.findOneAndUpdate(
@@ -72,6 +73,7 @@ const updateEsimateController = async (req, res) => {
       parseInt(req.body.advancePayment) - parseInt(invoice.advancePayment);
     const newEstimateHistory = new estimateHistoryModel({
       ...req.body,
+      discount: req.body.discount,
       paymentGiven: paid,
     });
     await newEstimateHistory.save();

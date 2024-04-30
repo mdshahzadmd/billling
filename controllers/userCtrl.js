@@ -218,7 +218,7 @@ const getAllUserController = async (req, res) => {
     let users;
     if (req.body.country) {
       users = await userModel.find({
-        email: { $ne: "aashirdigital@gmail.com" },
+        email: { $ne: "01.mdshahzad@gmail.com" },
         gender: req.body.gender,
         country: req.body.country,
         isVerified: "Yes",
@@ -226,7 +226,7 @@ const getAllUserController = async (req, res) => {
       });
     } else {
       users = await userModel.find({
-        email: { $ne: "aashirdigital@gmail.com" },
+        email: { $ne: "01.mdshahzad@gmail.com" },
         gender: req.body.gender,
         isVerified: "Yes",
         isDeleted: "No",
