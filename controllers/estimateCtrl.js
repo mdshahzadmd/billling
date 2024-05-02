@@ -3,6 +3,7 @@ const estimateHistoryModel = require("../models/estimateHistoryModel");
 
 const addEstimateController = async (req, res) => {
   try {
+    // const {created}
     const estimate = await estimateModel.findOne({
       estimateId: req.body.estimateId,
     });
@@ -71,10 +72,12 @@ const updateEsimateController = async (req, res) => {
 
     const paid =
       parseInt(req.body.advancePayment) - parseInt(invoice.advancePayment);
+
     const newEstimateHistory = new estimateHistoryModel({
       ...req.body,
       discount: req.body.discount,
       paymentGiven: paid,
+      updatedAt: req.body.invoice.createdAt,
     });
     await newEstimateHistory.save();
 

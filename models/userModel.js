@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    default: null,
   },
   emailOtp: {
     type: String,
