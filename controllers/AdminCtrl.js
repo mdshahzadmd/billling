@@ -26,12 +26,12 @@ const getAllClientsController = async (req, res) => {
 
 const addClientController = async (req, res) => {
   try {
-    const client = await userModel.findOne({ mobile: req.body.mobile });
-    if (client) {
-      return res
-        .status(200)
-        .send({ success: false, message: "Mobile Number Alreay Exists" });
-    }
+    // const client = await userModel.findOne({ mobile: req.body.mobile });
+    // if (client) {
+    //   return res
+    //     .status(200)
+    //     .send({ success: false, message: "Mobile Number Alreay Exists" });
+    // }
     const newUser = new userModel(req.body);
     await newUser.save();
     return res.status(200).send({
